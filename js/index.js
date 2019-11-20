@@ -17,6 +17,8 @@ function getQuery(direction, cursor = null)
             id
             history(${start}: ${pageLength}, ${direction}: ${cursor} ) {
               pageInfo {
+                hasNextPage
+                hasPreviousPage
                 startCursor
                 endCursor
               }
@@ -76,6 +78,8 @@ function showCommits(data)
   $('#commits-container').html(html);
 
   pageInfo = history.pageInfo;
+
+  setNavLinksVisibility();
 }
 
 function validateData(data)
@@ -86,6 +90,12 @@ function validateData(data)
     return false;
   }
   return true;
+}
+
+function setNavLinksVisibility()
+{
+  (!pageInfo.hasPreviousPage) ? $('#prev').hide() : $('#prev').show();
+  (!pageInfo.hasNextPage) ? $('#next').hide() : $('#next').show();
 }
 
 function next()
