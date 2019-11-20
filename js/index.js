@@ -56,6 +56,10 @@ function showCommits(data)
 {
   console.log(data);
 
+  if (!validateData(data)) {
+    return;
+  }
+
   var history = data.repository.defaultBranchRef.target.history;
   var commitList = history.edges;
   var html = '';
@@ -72,6 +76,16 @@ function showCommits(data)
   $('#commits-container').html(html);
 
   pageInfo = history.pageInfo;
+}
+
+function validateData(data)
+{
+  if (!data || !data.repository || !data.repository.defaultBranchRef) {
+    alert('no data to show');
+    $('#commits-container').html('');
+    return false;
+  }
+  return true;
 }
 
 function next()
