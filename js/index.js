@@ -1,8 +1,8 @@
 var pageInfo = {};
-const pageLength = 10;
+const pageLength = 3;
 const owner = 'radicalloop';
 const repoName = 'list-my-commits';
-const authToken = 'ea1d7a942ba9ceb30caebce353e3307128d90591';
+const authToken = '56cf37f176fe0bbdcffdea34176101a9e403b615';
 
 function getQuery(direction, cursor = null)
 {

@@ -1,6 +1,7 @@
 body {
     line-height: 1.3em;
     min-width: 920px;
+    font-family: "Roboto",sans-serif;
 }
 
 .history-tl-container {
@@ -66,6 +67,12 @@ ul.tl li .timestamp {
     font-size: 12px;
 }
 
+@media (min-width: 1440px) and (max-width: 1740px) {
+    ul.tl li .timestamp {
+        left: -37%;
+    }
+}
+
 .loading-btn {
     padding: 10px 14px;
     background: #318bc7;
@@ -76,4 +83,10 @@ ul.tl li .timestamp {
     font-family: "Roboto";
     margin-bottom: 10px;
     display: inline-block;
+}
+
+.title {
+    width: 50%;
+    margin: 20px auto;
+    padding-left: 20px;
 }
