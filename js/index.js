@@ -1,3 +1,4 @@
+var pageInfo = {};
 const pageLength = 10;
 const owner = 'radicalloop';
 const repoName = 'list-my-commits';
@@ -15,6 +16,10 @@ function getQuery(direction, cursor = null)
           ... on Commit {
             id
             history(${start}: ${pageLength}, ${direction}: ${cursor} ) {
+              pageInfo {
+                startCursor
+                endCursor
+              }
               edges {
                 node {
                   messageHeadline
@@ -66,10 +71,22 @@ function showCommits(data)
 
   $('#commits-container').html(html);
 
+  pageInfo = history.pageInfo;
 }
 
+function next()
+{
+  getCommits('after', pageInfo.endCursor);
+}
+
+function previous()
+{
+  getCommits('before', pageInfo.startCursor);
+}
 
 $(document).ready(function(){
+  $('#next').on('click', next);
+  $('#prev').on('click', previous);
 
   getCommits('after');
 });
