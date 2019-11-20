@@ -57,6 +57,11 @@ ul.tl li .item-detail {
     font-size: 12px;
 }
 
+ul.tl li .item-author {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 12px;
+}
+
 ul.tl li .timestamp {
     color: #8D8D8D;
     position: absolute;
@@ -69,7 +74,7 @@ ul.tl li .timestamp {
 
 @media (min-width: 1440px) and (max-width: 1740px) {
     ul.tl li .timestamp {
-        left: -37%;
+        left: -45%;
     }
 }
 
@@ -89,4 +94,8 @@ ul.tl li .timestamp {
     width: 50%;
     margin: 20px auto;
     padding-left: 20px;
+}
+
+.commit__url {
+    text-decoration: none;
 }

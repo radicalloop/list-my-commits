@@ -2,7 +2,7 @@ var pageInfo = {};
 const pageLength = 3;
 const owner = 'radicalloop';
 const repoName = 'list-my-commits';
-const authToken = '56cf37f176fe0bbdcffdea34176101a9e403b615';
+const authToken = window.atob('ZGE2YzhkZmM5ZTQ5OWVjZDY3NmI3ZDQzM2E2YzBkZmRmNWExNTZmNA==');
 
 function getQuery(direction, cursor = null)
 {
@@ -24,6 +24,7 @@ function getQuery(direction, cursor = null)
               }
               edges {
                 node {
+                  commitUrl
                   messageHeadline
                   oid
                   message
@@ -62,16 +63,23 @@ function showCommits(data)
     return;
   }
 
-  var history = data.repository.defaultBranchRef.target.history;
-  var commitList = history.edges;
-  var html = '';
+  let history = data.repository.defaultBranchRef.target.history;
+  let commitList = history.edges;
+  let html = '';
 
   for (let i = 0; i < commitList.length; i++) {
-    var commitObj = commitList[i];
-    var commitHtml = $('<div/>').html($('#commit-info').html());
-    $(commitHtml).find('.item-title').html(commitObj.node.messageHeadline);
-    $(commitHtml).find('.item-detail').html(commitObj.node.message);
-    $(commitHtml).find('.timestamp').html(commitObj.node.committedDate);
+    let commitObj = commitList[i];
+    let commitHtml = $('<div/>').html($('#commit-info').html());
+    let nodeObj = commitObj.node;
+
+    let messageLink = $('<a>').attr({'href': nodeObj.commitUrl, 'target': '_blank', 'class': 'commit__url'}).html(nodeObj.messageHeadline);
+    console.log(messageLink);
+
+    $(commitHtml).find('.item-title').html(messageLink);
+    $(commitHtml).find('.item-detail').html(nodeObj.message);
+    $(commitHtml).find('.item-author').html(nodeObj.author.name + ' (' + nodeObj.author.email + ')');
+    $(commitHtml).find('.timestamp').html(nodeObj.committedDate);
+
     html += $(commitHtml).html();
   }
 
