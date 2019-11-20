@@ -95,8 +95,10 @@ function validateData(data)
 
 function setNavLinksVisibility()
 {
-  (!pageInfo.hasPreviousPage) ? $('#prev').hide() : $('#prev').show();
-  (!pageInfo.hasNextPage) ? $('#next').hide() : $('#next').show();
+  // (!pageInfo.hasPreviousPage) ? $('#prev').hide() : $('#prev').show();
+  // (!pageInfo.hasNextPage) ? $('#next').hide() : $('#next').show();
+
+  (!pageInfo.hasNextPage) ? $('#load_more').hide() : $('#load_more').show();
 }
 
 function next()
@@ -110,8 +112,10 @@ function previous()
 }
 
 $(document).ready(function(){
-  $('#next').on('click', next);
-  $('#prev').on('click', previous);
+  // $('#next').on('click', next);
+  // $('#prev').on('click', previous);
+
+  $('#load_more').on('click', next);
 
   getCommits('after');
 });
