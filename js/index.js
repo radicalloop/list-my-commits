@@ -75,7 +75,7 @@ function showCommits(data)
     html += $(commitHtml).html();
   }
 
-  $('#commits-container').html(html);
+  $('#commits-container').append(html);
 
   pageInfo = history.pageInfo;
 
@@ -87,6 +87,7 @@ function validateData(data)
   if (!data || !data.repository || !data.repository.defaultBranchRef) {
     alert('no data to show');
     $('#commits-container').html('');
+    setNavLinksVisibility();
     return false;
   }
   return true;
