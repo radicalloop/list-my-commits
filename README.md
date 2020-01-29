@@ -1,2 +1,2 @@
 # list-my-commits-demo
-lists the commits of current git repo.
+Lists the commits of current git repo.
